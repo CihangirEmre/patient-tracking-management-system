@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor | Acisiz Hospital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Hasta adı, soyadı ve cinsiyetin stili */
+        .randevu-link {
+            color: black; /* Siyah renk */
+            text-decoration: none; /* Altı çizili olmayacak */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Doktor İşlemleri</h1>
+        <h2>Uzmanlık Alanı: [Doktorun Uzmanlık Alanı]</h2><h2>Doktor İsim: </h2>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h3>Randevular</h3>
+                <ul class="list-group mt-3">
+                    <li class="list-group-item"><a href="#" class="randevu-link">Hasta Adı Soyadı - Cinsiyet</a> <button type="button" class="btn btn-info btn-sm float-end">Tıbbi Rapor</button></li>
+                    <li class="list-group-item"><a href="#" class="randevu-link">Hasta Adı Soyadı - Cinsiyet</a> <button type="button" class="btn btn-info btn-sm float-end">Tıbbi Rapor</button></li>
+                    <!-- Diğer randevular buraya eklenecek -->
+                </ul>
+                <button type="button" class="btn btn-outline-info mt-3">Tıbbi Rapor Ekle</button>
+            </div>
+            <div class="col">
+                <div class="row mt-4">
+                    <div class="col">
+                        <h4 id="randevu-detay">Randevu Detayları</h4>
+                        <p><strong>Hasta Adı Soyadı:</strong> [Hasta Adı Soyadı]</p>
+                        <p><strong>Cinsiyet:</strong> [Cinsiyet]</p>
+                        <p><strong>Doğum Tarihi:</strong> [Doğum Tarihi]</p>
+                        <p><strong>Telefon Numarası:</strong> [Telefon Numarası]</p>
+                        <p><strong>Adres:</strong> [Adres]</p>
+                        <!-- Diğer hasta bilgileri buraya eklenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const randevuLinks = document.querySelectorAll('.randevu-link');
+
+        randevuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selectedRandevu = this.textContent.trim();
+                document.getElementById('randevu-detay').textContent = `Randevu Detayları: ${selectedRandevu}`;
+            });
+        });
+    </script>
+</body>
+</html>

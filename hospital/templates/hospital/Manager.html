@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici | Acisiz Systems</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col">
+                <h1>Yeni Doktor Ekle</h1>
+
+                {% if success_message %}
+                    <p style="color: green;">{{ success_message }}</p>
+                {% endif %}
+
+                <h2>Mevcut Doktorlar</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Doktor ID</th>
+                            <th scope="col">İsim</th>
+                            <th scope="col">Soyisim</th>
+                            <th scope="col">Uzmanlık Alanı</th>
+                            <th scope="col">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for doktor in doktorlar %}
+                            <tr>
+                                <td>{{ doktor.0 }}</td>
+                                <td>{{ doktor.1 }}</td>
+                                <td>{{ doktor.2 }}</td>
+                                <td>{{ doktor.3 }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="doktor_id" value="{{ doktor.0 }}">
+                                        <input type="submit" name="sil_doktor" value="Sil" class="btn btn-danger">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="DoktorID">Doktor ID:</label>
+                        <input type="text" id="DoktorID" name="DoktorID" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="DoktorSifre">Doktor Şifre:</label>
+                        <input type="password" id="DoktorSifre" name="DoktorSifre" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ad">Ad:</label>
+                        <input type="text" id="Ad" name="Ad" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Soyad">Soyad:</label>
+                        <input type="text" id="Soyad" name="Soyad" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="UzmanlikAlani">Uzmanlık Alanı:</label>
+                        <input type="text" id="UzmanlikAlani" name="UzmanlikAlani" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Doktor Ekle</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <h1>Yeni Hasta Ekle</h1>
+
+                <h2>Mevcut Hastalar</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Hasta ID</th>
+                            <th scope="col">İsim</th>
+                            <th scope="col">Soyisim</th>
+                            <th scope="col">Doğum Tarihi</th>
+                            <th scope="col">Cinsiyet</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Adres</th>
+                            <th scope="col">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hasta in hastalar %}
+                            <tr>
+                                <td>{{ hasta.0 }}</td>
+                                <td>{{ hasta.1 }}</td>
+                                <td>{{ hasta.2 }}</td>
+                                <td>{{ hasta.4 }}</td>
+                                <td>{{ hasta.5 }}</td>
+                                <td>{{ hasta.6 }}</td>
+                                <td>{{ hasta.7 }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="hasta_id" value="{{ hasta.0 }}">
+                                        <input type="hidden" name="sil_hasta" value="1">
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="HastaID">Hasta ID:</label>
+                        <input type="text" id="HastaID" name="HastaID" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="HastaSifre">Hasta Şifre:</label>
+                        <input type="password" id="HastaSifre" name="HastaSifre" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ad">Ad:</label>
+                        <input type="text" id="Ad" name="Ad" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Soyad">Soyad:</label>
+                        <input type="text" id="Soyad" name="Soyad" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="DogumTarihi">Doğum Tarihi:</label>
+                        <input type="text" id="DogumTarihi" name="DogumTarihi" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Cinsiyet">Cinsiyet:</label>
+                        <input type="text" id="Cinsiyet" name="Cinsiyet" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Telefon">Telefon:</label>
+                        <input type="text" id="Telefon" name="Telefon" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Adres">Adres:</label>
+                        <input type="text" id="Adres" name="Adres" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Hasta Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

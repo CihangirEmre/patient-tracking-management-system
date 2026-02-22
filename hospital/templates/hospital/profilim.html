@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilim</title>
+</head>
+<body>
+    <h1>Profil Bilgileri</h1>
+    <form method="post" action="{% url 'profilim' %}">
+        {% csrf_token %}
+        <label for="hasta_id">Hasta ID:</label>
+        <input type="text" id="hasta_id" name="hasta_id" value="{{ hasta_id }}" readonly><br><br>
+
+        <label for="hasta_sifre">Şifre:</label>
+        <input type="password" id="hasta_sifre" name="hasta_sifre" value="{{ hasta_sifre }}"><br><br>
+
+        <label for="ad">Ad:</label>
+        <input type="text" id="ad" name="ad" value="{{ ad }}"><br><br>
+
+        <label for="soyad">Soyad:</label>
+        <input type="text" id="soyad" name="soyad" value="{{ soyad }}"><br><br>
+
+        <label for="dogum_tarihi">Doğum Tarihi:</label>
+        <input type="date" id="dogum_tarihi" name="dogum_tarihi" value="{{ dogum_tarihi }}"><br><br>
+
+        <label for="cinsiyet">Cinsiyet:</label>
+        <select id="cinsiyet" name="cinsiyet">
+            <option value="erkek" {% if cinsiyet == 'erkek' %} selected {% endif %}>Erkek</option>
+            <option value="kadın" {% if cinsiyet == 'kadın' %} selected {% endif %}>Kadın</option>
+        </select><br><br>
+
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" name="telefon" value="{{ telefon }}"><br><br>
+
+        <label for="adres">Adres:</label>
+        <textarea id="adres" name="adres">{{ adres }}</textarea><br><br>
+
+        <input type="submit" value="Güncelle">
+    </form>
+</body>
+</html>

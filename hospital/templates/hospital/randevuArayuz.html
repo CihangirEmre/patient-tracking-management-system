@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Alma | Acisiz Systems</title>
+</head>
+<body>
+    <h2>Doktor Seçin ve Randevu Alın</h2>
+    <form action="/randevu-al" method="post">
+        <label for="doctor">Doktor:</label>
+        <select id="doctor" name="doctor">
+            {% for result in results %}
+                <option value="{{ result[0] }}">{{ result[1] }} {{ result[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="date">Tarih:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <label for="time">Saat:</label>
+        <input type="time" id="time" name="time"><br><br>
+        <button type="submit">Randevu Al</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!-- reports/templates/reports/RaporView.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapor View</title>
+</head>
+<body>
+    <h1>Raporları Görüntüle</h1>
+    <form method="get" action="{% url 'rapor_view' %}">
+        <label for="hasta_id">Hasta ID:</label>
+        <input type="text" id="hasta_id" name="hasta_id" value="{{ hasta_id }}">
+        <button type="submit">Getir</button>
+    </form>
+
+    {% if raporlar %}
+        <h2>Raporlar</h2>
+        <ul>
+            {% for rapor in raporlar %}
+                <li>
+                    <strong>Rapor ID:</strong> {{ rapor.0 }} <br>
+                    <strong>Rapor Tarihi:</strong> {{ rapor.1 }} <br>
+                    <strong>Rapor İçeriği:</strong> {{ rapor.2 }} <br>
+                    <strong>Hasta ID:</strong> {{ rapor.3 }} <br>
+                    <strong>Doktor ID:</strong> {{ rapor.4 }} <br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Rapor bulunamadı.</p>
+    {% endif %}
+</body>
+</html>

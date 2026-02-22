@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doktor Profilim</title>
+</head>
+<body>
+    <h1>Profil Bilgileri</h1>
+    <form method="post" action="{% url 'DoktorProfilim' %}">
+        {% csrf_token %}
+        <label for="doktor_id">Hasta ID:</label>
+        <input type="text" id="doktor_id" name="doktor_id" value="{{ doktor_id }}" readonly><br><br>
+
+        <label for="doktor_sifre">Şifre:</label>
+        <input type="password" id="doktor_sifre" name="doktor_sifre" value="{{ doktor_sifre }}"><br><br>
+
+        <label for="ad">Ad:</label>
+        <input type="text" id="ad" name="ad" value="{{ ad }}"><br><br>
+
+        <label for="soyad">Soyad:</label>
+        <input type="text" id="soyad" name="soyad" value="{{ soyad }}"><br><br>
+
+        <label for="uzmanlik_alani">Doğum Tarihi:</label>
+        <input type="date" id="uzmanlik_alani" name="uzmanlik_alani" value="{{ uzmanlik_alani }}"><br><br>
+
+        <input type="submit" value="Güncelle">
+    </form>
+</body>
+</html>

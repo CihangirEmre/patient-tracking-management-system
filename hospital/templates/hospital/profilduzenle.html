@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Düzenle</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Profil Düzenle</h2>
+        
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        {% if not hasta_bilgileri %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Hasta ID</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </form>
+        {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="HastaID">Hasta ID</label>
+                <input type="text" class="form-control" id="HastaID" name="HastaID" value="{{ hasta_bilgileri.HastaID }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="Ad">Ad</label>
+                <input type="text" class="form-control" id="Ad" name="Ad" value="{{ hasta_bilgileri.Ad }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Soyad">Soyad</label>
+                <input type="text" class="form-control" id="Soyad" name="Soyad" value="{{ hasta_bilgileri.Soyad }}" required>
+            </div>
+            <div class="form-group">
+                <label for="DogumTarihi">Doğum Tarihi</label>
+                <input type="date" class="form-control" id="DogumTarihi" name="DogumTarihi" value="{{ hasta_bilgileri.DogumTarihi }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Cinsiyet">Cinsiyet</label>
+                <input type="text" class="form-control" id="Cinsiyet" name="Cinsiyet" value="{{ hasta_bilgileri.Cinsiyet }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Telefon">Telefon</label>
+                <input type="text" class="form-control" id="Telefon" name="Telefon" value="{{ hasta_bilgileri.Telefon }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Adres">Adres</label>
+                <input type="text" class="form-control" id="Adres" name="Adres" value="{{ hasta_bilgileri.Adres }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Bilgileri Güncelle</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

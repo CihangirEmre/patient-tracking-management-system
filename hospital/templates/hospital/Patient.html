@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient | Acisiz Hospital</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Bildirim stilini buraya ekleyebilirsiniz */
+        .notification-badge {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Hasta İşlemleri</h1>
+        <h2><span class="turquoise-color">ID</span> Hasta İsim Hasta</h2>
+        
+        <hr>
+        <h2>Randevular</h2>
+        <ul class="list-group mt-3">
+            <li class="list-group-item">Randevu 1 <button type="button" class="btn btn-danger btn-sm float-end">İptal Et</button></li>
+            <li class="list-group-item">Randevu 2 <button type="button" class="btn btn-danger btn-sm float-end">İptal Et</button></li>
+            <li class="list-group-item">Randevu 3 <button type="button" class="btn btn-danger btn-sm float-end">İptal Et</button></li>
+            <!-- Var olan randevular buraya eklenecek -->
+        </ul>
+        <button id="notification-btn" type="button" class="btn btn-outline-info mt-3" style="position: fixed; right: 20px; top: 70px;">Bildirim</button>
+        <!-- Profil butonu -->
+        <a href="{% url 'profile_url' %}" class="btn btn-outline-info rounded-circle position-fixed top-0 end-0 m-4" style="z-index: 1;">Profil</a>
+        <!-- Bildirim sayfası -->
+        <div id="notification-popup" style="display: none; position: fixed; top: 150px; right: 20px; background-color: white; padding: 20px; border: 1px solid gray;">
+            <h4>Bildirimler</h4>
+            <p>Şu anda herhangi bir bildiriminiz bulunmamaktadır.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const notificationBtn = document.getElementById('notification-btn');
+        const notificationPopup = document.getElementById('notification-popup');
+    
+        // Bildirim butonuna tıklandığında popup göster
+        notificationBtn.addEventListener('click', function() {
+            notificationPopup.style.display = 'block';
+        });
+    
+        // Popup dışına tıklandığında popup'ı kapat
+        window.addEventListener('click', function(event) {
+            if (event.target != notificationPopup && event.target != notificationBtn) {
+                notificationPopup.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
